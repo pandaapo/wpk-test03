@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Panda</title>htmlWebpackPlugin.files.chunks.main.entry
+    <script type="text/javascript">
+        <%for(var file in htmlWebpackPlugin.files.chunks){ %>
+            <%=
+                compilation.assets[htmlWebpackPlugin.files.chunks[file].entry.substr(htmlWebpackPlugin.files.publicPath.length)].source()
+             %>
+         <%}%>
+    </script>
+</head>
+<body>
+    <!--通过webpack.config.js中html-webpack-plugin中chunks的配置来自动引入-->
+
+    <% for(var k in htmlWebpackPlugin.files.chunks) {%>
+        <% if(k !=='main') {%>
+            <script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks[k].entry %>"></script>
+        <%}%>
+    <%}%>
+    <!--我是注释-->
+</body>
+</html>
